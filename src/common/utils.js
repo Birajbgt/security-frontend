@@ -1,5 +1,5 @@
 
-const kname = "Artify";
+const kname = "Clickify";
 
 export { kname };
 

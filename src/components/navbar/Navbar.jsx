@@ -1,5 +1,4 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { kname } from "../../common/utils";
 
@@ -81,16 +80,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className='search-container w-25 text-center  me-5 d-flex justify-content-center align-items-center'>
-              <input
-                type='text'
-                placeholder='Search Painting'
-                className='search-input form-control w-100'
-              />
-              <button className='search-button h-100 border-0 bg-white px-3'>
-                <FaSearch />
-              </button>
-            </div>
+
             <form className='d-flex w-25' role='search'>
               {users ? (
                 <div className='dropdown mt-3 mt-lg-auto w-100 text-center'>

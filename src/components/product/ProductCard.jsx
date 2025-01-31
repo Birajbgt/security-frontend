@@ -38,24 +38,52 @@ const ProductCard = ({ productInformation }) => {
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
 
+  // const handleCartButton = (e) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+  //   formData.append("userID", user._id);
+  //   formData.append("productID", productInformation._id);
+  //   formData.append("productPrice", productInformation.productPrice);
+  //   formData.append("quantity", quantity);
+  //   console.log(formData);
+  //   console.log(user._id);
+  //   console.log(productInformation._id);
+  //   console.log(productInformation.productPrice);
+  //   console.log(quantity);
+
+  //   addToCartApi(formData)
+  //     .then((res) => {
+  //       if (res.data.success === false) {
+  //         message.success(res.data.message);
+  //       } else {
+  //         message.success(res.data.message);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       message.error("Server Error");
+  //       console.log(err.message);
+  //     });
+  // };
   const handleCartButton = (e) => {
     e.preventDefault();
+
+    // Check if user is logged in
+    if (!user) {
+      message.warning("Please log in first to add items to your cart.");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("userID", user._id);
     formData.append("productID", productInformation._id);
     formData.append("productPrice", productInformation.productPrice);
     formData.append("quantity", quantity);
-    console.log(formData);
-    console.log(user._id);
-    console.log(productInformation._id);
-    console.log(productInformation.productPrice);
-    console.log(quantity);
 
     addToCartApi(formData)
       .then((res) => {
         if (res.data.success === false) {
-          message.success(res.data.message);
+          message.error(res.data.message);
         } else {
           message.success(res.data.message);
         }
@@ -65,6 +93,7 @@ const ProductCard = ({ productInformation }) => {
         console.log(err.message);
       });
   };
+
   return (
     <>
       <div className='product-card border-0 h-100 p-0 m-0 px-3 py-3 rounded'>
@@ -76,7 +105,7 @@ const ProductCard = ({ productInformation }) => {
             >
               <img
                 className='w-100 h-100 object-fit-cover rounded'
-                src={`http://localhost:5500/products/${productInformation.productImage}`}
+                src={`https://localhost:5500/products/${productInformation.productImage}`}
                 alt={productInformation.productName}
               />
             </a>

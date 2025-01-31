@@ -147,7 +147,7 @@ const ProductDescription = () => {
                 <h2>{productName}</h2>
                 <div className="d-flex flex-wrap gap-3">
                     <div className="image-section">
-                        <img className="img-fluid rounded-2" src={`http://localhost:5500/products/${oldImage}`} alt={productName} />
+                        <img className="img-fluid rounded-2" src={`https://localhost:5500/products/${oldImage}`} alt={productName} />
                         {previewNewImage && (
                             <>
                                 <h6 className="mt-3">Previewing New Image</h6>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { CountUp } from "use-count-up";
-import { createOrderApi, getAddress, getCartByUserIDApi, removeFromCartApi, updateCartApi, updateCartStatusApi } from '../../../apis/Api';
+import { createOrderApi, getCartByUserIDApi, removeFromCartApi, updateCartApi, updateCartStatusApi } from '../../../apis/Api';
 import './Cart.css';
 
 const Cart = () => {
@@ -55,16 +55,16 @@ const Cart = () => {
             setTotal(shipping); // If the cart is empty, total is just the shipping cost
         }
     };
-    useEffect(() => {
-        getAddress(user._id)
-            .then((res) => {
-                console.log("address", res.data.addresses)
-                setAddresses(res.data.addresses || []);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    // useEffect(() => {
+    //     getAddress(user._id)
+    //         .then((res) => {
+    //             console.log("address", res.data.addresses)
+    //             setAddresses(res.data.addresses || []);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [_id]);
 
     const handleQuantityChange = (value, cart) => {
         if (value < 1 || !cart.productID) return; // Add check for cart.productID
@@ -130,33 +130,6 @@ const Cart = () => {
         }
     };
 
-    // const handleKhaltiPayment = () => {
-    //     let config = {
-    //         publicKey: "test_public_key_0800545e039d45368cab4d1b2fb93d01",
-    //         productIdentity: "1234567890",
-    //         productName: "Cart Items",
-    //         productUrl: "http://example.com/cart",
-    //         eventHandler: {
-    //             onSuccess(payload) {
-    //                 console.log("Khalti success payload:", payload);
-    //                 toast.success("Payment Successful!");
-    //                 saveOrder("Payment made via Khalti");
-    //             },
-    //             onError(error) {
-    //                 console.log("Khalti error:", error);
-    //                 toast.error("Payment Failed. Please try again.");
-    //             },
-    //             onClose() {
-    //                 console.log('Khalti widget is closing');
-    //             }
-    //         },
-    //         paymentPreference: ["KHALTI", "EBANKING", "MOBILE_BANKING", "CONNECT_IPS", "SCT"],
-    //     };
-
-    //     let checkout = new KhaltiCheckout(config);
-    //     checkout.show({ amount: total * 100 });
-    // };
-
     const saveOrder = (paymentMethod) => {
         const cartIDs = cartItems.map((item) => item._id);
         const orderData = {
@@ -216,7 +189,7 @@ const Cart = () => {
                                         <tr key={cart._id} className="border-b">
                                             <td className="flex items-center py-4">
                                                 <img
-                                                    src={cart.productID ? `http://localhost:5500/products/${cart.productID.productImage}` : '/placeholder.png'}
+                                                    src={cart.productID ? `https://localhost:5500/products/${cart.productID.productImage}` : '/placeholder.png'}
                                                     alt={cart.productID ? cart.productID.productName : 'Product Image'}
                                                     className="w-20 h-20"
                                                 />

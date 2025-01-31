@@ -7,6 +7,7 @@ import { getUserData, updateUserData } from "../../../apis/Api";
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user._id;
+  console.log(id);
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -18,6 +19,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         const res = await getUserData(id);
+        console.log("data", res.data);
         console.log(res.data.user);
         setFirstName(res.data.user.firstname);
         setLastName(res.data.user.lastname);
@@ -30,7 +32,7 @@ const Profile = () => {
     };
 
     fetchUserData();
-  }, [id]);
+  }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();

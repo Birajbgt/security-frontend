@@ -1,7 +1,7 @@
 import { message } from "antd";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import { addToCartApi, getcaterogyById } from "../../apis/Api";
 
 const ProductCards = ({ productInformation }) => {
@@ -36,8 +36,36 @@ const ProductCards = ({ productInformation }) => {
     fetchCategoryName();
   }, [productInformation.productCategory]);
 
+  // const handleCartButton = (e) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+  //   formData.append("userID", user._id);
+  //   formData.append("productID", productInformation._id);
+  //   formData.append("productPrice", productInformation.productPrice);
+  //   formData.append("quantity", quantity);
+
+  //   addToCartApi(formData)
+  //     .then((res) => {
+  //       if (res.data.success === false) {
+  //         message.success(res.data.message);
+  //       } else {
+  //         message.success(res.data.message);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       message.error("Server Error");
+  //       console.log(err.message);
+  //     });
+  // };
   const handleCartButton = (e) => {
     e.preventDefault();
+
+    // Check if user is logged in
+    if (!user) {
+      message.warning("Please log in first to add items to your cart.");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("userID", user._id);
@@ -48,7 +76,7 @@ const ProductCards = ({ productInformation }) => {
     addToCartApi(formData)
       .then((res) => {
         if (res.data.success === false) {
-          message.success(res.data.message);
+          message.error(res.data.message);
         } else {
           message.success(res.data.message);
         }
@@ -69,7 +97,7 @@ const ProductCards = ({ productInformation }) => {
       </span>
       <img
         // height={"200px"}
-        src={`http://localhost:5500/products/${productInformation.productImage}`}
+        src={`https://localhost:5500/products/${productInformation.productImage}`}
         className='card-img-top h-50 w-100 object-fit-cover'
         alt={productInformation.productName}
       />
