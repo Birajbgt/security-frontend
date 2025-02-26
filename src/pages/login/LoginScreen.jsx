@@ -13,9 +13,9 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
 
   const navigate = useNavigate(); // Use useNavigate hook
-  const handleCaptchaChange = (token) => {
-    setCaptchaToken(token); // Save the reCAPTCHA token
-  };
+  // const handleCaptchaChange = (token) => {
+  //   setCaptchaToken(token); // Save the reCAPTCHA token
+  // };
 
   const validation = () => {
     let isValid = true;
@@ -28,10 +28,10 @@ const Login = () => {
       setPasswordError("Password is required");
       isValid = false;
     }
-    if (!captchaToken) {
-      toast.error("Please complete the reCAPTCHA verification");
-      isValid = false
-    }
+    // if (!captchaToken) {
+    //   toast.error("Please complete the reCAPTCHA verification");
+    //   isValid = false
+    // }
     return isValid;
   };
 
