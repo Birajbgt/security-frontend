@@ -105,7 +105,7 @@ const ProductCard = ({ productInformation }) => {
             >
               <img
                 className='w-100 h-100 object-fit-cover rounded'
-                src={`https://localhost:5500/products/${productInformation.productImage}`}
+                src={`https://backend-seca-birajbgt-copy.onrender.com/products/${productInformation.productImage}`}
                 alt={productInformation.productName}
               />
             </a>
