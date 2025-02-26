@@ -129,12 +129,12 @@ const Login = () => {
             />
             {passwordError && <p className='text-danger'>{passwordError}</p>}
           </div>
-          <div style={{ marginBottom: "15px", textAlign: "center" }}>
+{/*           <div style={{ marginBottom: "15px", textAlign: "center" }}>
             <ReCAPTCHA
               sitekey="6LdqCscqAAAAALrksRaaRzVr46PZ5RGuthmqGa8E"
               onChange={handleCaptchaChange}
             />
-          </div>
+          </div> */}
           <div style={{ marginBottom: "15px", textAlign: "right" }}>
             <a
               href='/forgot-password'
